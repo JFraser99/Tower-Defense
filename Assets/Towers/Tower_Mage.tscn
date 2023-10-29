@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://gya12wvaxibp"]
+
+[ext_resource type="Script" path="res://Assets/Towers/mage_tower.gd" id="1_2ocuu"]
+[ext_resource type="Texture2D" uid="uid://da68jrw0q4ayl" path="res://Assets/Towers/Mage_Tower_1.png" id="1_kjtrs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_40als"]
+size = Vector2(34, 42)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lyc3e"]
+radius = 150.0
+
+[node name="TowerMage" type="StaticBody2D"]
+collision_mask = 5
+script = ExtResource("1_2ocuu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 11)
+shape = SubResource("RectangleShape2D_40als")
+debug_color = Color(0.988235, 0.0313726, 0.270588, 0.419608)
+
+[node name="Aim" type="Marker2D" parent="."]
+position = Vector2(-23, 3)
+
+[node name="Tower" type="Area2D" parent="."]
+collision_mask = 4
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Tower"]
+shape = SubResource("CircleShape2D_lyc3e")
+
+[node name="ProjectileContainer" type="Node" parent="."]
+
+[node name="MageTower1" type="Sprite2D" parent="."]
+texture = ExtResource("1_kjtrs")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.6
+autostart = true
+
+[connection signal="body_entered" from="Tower" to="." method="_on_tower_body_entered"]
+[connection signal="body_exited" from="Tower" to="." method="_on_tower_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
