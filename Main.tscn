@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dgy6k1rkwm4o7" path="res://Assets/EnvironmentTileMap.png" id="1_7af2k"]
 [ext_resource type="Script" path="res://PathSpawner.gd" id="2_l3sru"]
-[ext_resource type="PackedScene" uid="uid://gya12wvaxibp" path="res://Assets/Towers/Tower_Mage.tscn" id="3_boj6c"]
+[ext_resource type="PackedScene" uid="uid://cfg6jom36sku8" path="res://Assets/ui.tscn" id="3_csvx2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ktbyi"]
 texture = ExtResource("1_7af2k")
@@ -35,7 +35,8 @@ autostart = true
 
 [node name="Towers" type="Node2D" parent="."]
 
-[node name="MageTower" parent="." instance=ExtResource("3_boj6c")]
-position = Vector2(303, 312)
+[node name="TempTowers" type="Node2D" parent="."]
+
+[node name="UI" parent="." instance=ExtResource("3_csvx2")]
 
 [connection signal="timeout" from="PathSpawner/Timer" to="PathSpawner" method="_on_timer_timeout"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://gya12wvaxibp"]
+[gd_scene load_steps=6 format=3 uid="uid://gya12wvaxibp"]
 
 [ext_resource type="Script" path="res://Assets/Towers/mage_tower.gd" id="1_2ocuu"]
 [ext_resource type="Texture2D" uid="uid://da68jrw0q4ayl" path="res://Assets/Towers/Mage_Tower_1.png" id="1_kjtrs"]
@@ -8,6 +8,13 @@ size = Vector2(34, 42)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lyc3e"]
 radius = 150.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ge6gj"]
+bg_color = Color(0.847059, 0.137255, 0, 1)
+corner_radius_top_left = 150
+corner_radius_top_right = 150
+corner_radius_bottom_right = 150
+corner_radius_bottom_left = 150
 
 [node name="TowerMage" type="StaticBody2D"]
 collision_mask = 5
@@ -21,10 +28,10 @@ debug_color = Color(0.988235, 0.0313726, 0.270588, 0.419608)
 [node name="Aim" type="Marker2D" parent="."]
 position = Vector2(-23, 3)
 
-[node name="Tower" type="Area2D" parent="."]
+[node name="DetectionArea" type="Area2D" parent="."]
 collision_mask = 4
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Tower"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="DetectionArea"]
 shape = SubResource("CircleShape2D_lyc3e")
 
 [node name="ProjectileContainer" type="Node" parent="."]
@@ -32,10 +39,17 @@ shape = SubResource("CircleShape2D_lyc3e")
 [node name="MageTower1" type="Sprite2D" parent="."]
 texture = ExtResource("1_kjtrs")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="AttackCooldownTimer" type="Timer" parent="."]
 wait_time = 0.6
-autostart = true
 
-[connection signal="body_entered" from="Tower" to="." method="_on_tower_body_entered"]
-[connection signal="body_exited" from="Tower" to="." method="_on_tower_body_exited"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="Panel" type="Panel" parent="."]
+modulate = Color(0, 0, 0, 0.313726)
+offset_left = -150.0
+offset_top = -150.0
+offset_right = 150.0
+offset_bottom = 150.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ge6gj")
+
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_tower_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="." method="_on_tower_body_exited"]
+[connection signal="timeout" from="AttackCooldownTimer" to="." method="_on_timer_timeout"]
