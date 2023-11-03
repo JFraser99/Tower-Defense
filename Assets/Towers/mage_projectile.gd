@@ -20,4 +20,5 @@ func _physics_process(_delta):
 func _on_area_2d_body_entered(body):
 	if "Enemy" in body.name:
 		body.Health -= projDamage
+		body.healthBar.value = body.Health
 		queue_free()

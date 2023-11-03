@@ -1,9 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://ltepa2i4galk"]
+[gd_scene load_steps=6 format=3 uid="uid://ltepa2i4galk"]
 
 [ext_resource type="Script" path="res://Assets/Enemy/Enemy.gd" id="1_hunwb"]
 [ext_resource type="Texture2D" uid="uid://b3x0jrxnv81m3" path="res://Assets/Enemy/Enemy_Idle.png" id="2_kl7tf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_khxtd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uh3aq"]
+bg_color = Color(0.254902, 0.560784, 0.184314, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_noi8v"]
+bg_color = Color(0.819608, 0, 0.117647, 1)
 
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 4
@@ -17,3 +23,13 @@ shape = SubResource("CircleShape2D_khxtd")
 position = Vector2(1, -1)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_kl7tf")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -25.0
+offset_top = -27.0
+offset_right = 25.0
+offset_bottom = -17.0
+theme_override_styles/background = SubResource("StyleBoxFlat_uh3aq")
+theme_override_styles/fill = SubResource("StyleBoxFlat_noi8v")
+fill_mode = 1
+show_percentage = false
