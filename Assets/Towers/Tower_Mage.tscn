@@ -5,7 +5,7 @@
 [ext_resource type="StyleBox" uid="uid://c25nawf58qguo" path="res://Assets/Towers/UpgradeButtonStyle.tres" id="3_j5er1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_40als"]
-size = Vector2(34, 42)
+size = Vector2(39, 65)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lyc3e"]
 radius = 150.0
@@ -51,7 +51,7 @@ input_pickable = true
 script = ExtResource("1_2ocuu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 11)
+position = Vector2(-0.5, -0.5)
 shape = SubResource("RectangleShape2D_40als")
 debug_color = Color(0.988235, 0.0313726, 0.270588, 0.419608)
 
@@ -151,6 +151,3 @@ horizontal_alignment = 1
 wait_time = 0.6
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
-[connection signal="body_entered" from="DetectionArea" to="." method="_on_tower_body_entered"]
-[connection signal="body_exited" from="DetectionArea" to="." method="_on_tower_body_exited"]
-[connection signal="timeout" from="AttackCooldownTimer" to="." method="_on_timer_timeout"]
