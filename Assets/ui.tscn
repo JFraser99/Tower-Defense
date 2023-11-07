@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cfg6jom36sku8"]
+[gd_scene load_steps=3 format=3 uid="uid://cfg6jom36sku8"]
 
 [ext_resource type="PackedScene" uid="uid://bfki2v3vhodgr" path="res://Assets/Towers/Panel_Mage.tscn" id="1_pgp5r"]
+[ext_resource type="PackedScene" uid="uid://c1y5lvgtc24gy" path="res://Assets/Towers/Panel_Swordsman.tscn" id="2_difmf"]
 
 [node name="UI" type="CanvasLayer"]
 
@@ -22,5 +23,5 @@ theme_override_constants/v_separation = 10
 [node name="PanelMage" parent="Panel/FlowContainer" instance=ExtResource("1_pgp5r")]
 layout_mode = 2
 
-[node name="PanelMage2" parent="Panel/FlowContainer" instance=ExtResource("1_pgp5r")]
+[node name="PanelSwordsman" parent="Panel/FlowContainer" instance=ExtResource("2_difmf")]
 layout_mode = 2

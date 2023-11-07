@@ -1,14 +1,14 @@
 [gd_scene load_steps=10 format=3 uid="uid://3vf3q5vud056"]
 
-[ext_resource type="Script" path="res://Assets/Towers/mage_tower.gd" id="1_ceh16"]
-[ext_resource type="Texture2D" uid="uid://da68jrw0q4ayl" path="res://Assets/Towers/Mage_Tower_1.png" id="2_fon8e"]
+[ext_resource type="Script" path="res://Assets/Towers/swordsman_tower.gd" id="1_3u7nu"]
+[ext_resource type="Texture2D" uid="uid://dglshmn2jheil" path="res://Assets/Towers/Swordsman_Tower_1.png" id="3_7mhly"]
 [ext_resource type="StyleBox" uid="uid://c25nawf58qguo" path="res://Assets/Towers/UpgradeButtonStyle.tres" id="3_eywhv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_40als"]
-size = Vector2(34, 42)
+size = Vector2(54, 58)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lyc3e"]
-radius = 150.0
+radius = 99.0808
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ge6gj"]
 bg_color = Color(0.847059, 0.137255, 0, 1)
@@ -48,10 +48,10 @@ corner_radius_bottom_left = 5
 [node name="TowerSwordsman" type="StaticBody2D"]
 collision_mask = 5
 input_pickable = true
-script = ExtResource("1_ceh16")
+script = ExtResource("1_3u7nu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 11)
+position = Vector2(-5, 3)
 shape = SubResource("RectangleShape2D_40als")
 debug_color = Color(0.988235, 0.0313726, 0.270588, 0.419608)
 
@@ -66,18 +66,15 @@ shape = SubResource("CircleShape2D_lyc3e")
 
 [node name="ProjectileContainer" type="Node" parent="."]
 
-[node name="MageTower1" type="Sprite2D" parent="."]
-texture = ExtResource("2_fon8e")
-
 [node name="AttackCooldownTimer" type="Timer" parent="."]
 wait_time = 0.6
 
 [node name="Area" type="Panel" parent="."]
 modulate = Color(0, 0, 0, 0.313726)
-offset_left = -150.0
-offset_top = -150.0
-offset_right = 150.0
-offset_bottom = 150.0
+offset_left = -99.0
+offset_top = -99.0
+offset_right = 99.0
+offset_bottom = 99.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_ge6gj")
 
 [node name="Upgrade" type="Node" parent="."]
@@ -149,6 +146,10 @@ offset_right = 72.0
 offset_bottom = 106.0
 text = "100000"
 horizontal_alignment = 1
+
+[node name="SwordsmanTower1" type="Sprite2D" parent="."]
+position = Vector2(-1, 1)
+texture = ExtResource("3_7mhly")
 
 [connection signal="input_event" from="." to="." method="_on_input_event" flags=18]
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_tower_body_entered" flags=18]
