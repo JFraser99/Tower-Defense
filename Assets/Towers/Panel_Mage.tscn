@@ -1,12 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://bfki2v3vhodgr"]
+[gd_scene load_steps=4 format=3 uid="uid://bfki2v3vhodgr"]
 
 [ext_resource type="Script" path="res://Assets/Towers/Panel_Mage.gd" id="1_lmvgy"]
 [ext_resource type="Texture2D" uid="uid://da68jrw0q4ayl" path="res://Assets/Towers/Mage_Tower_1.png" id="2_iwnci"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tujwf"]
+bg_color = Color(1, 1, 1, 1)
 
 [node name="PanelMage" type="Panel"]
 custom_minimum_size = Vector2(40, 50)
 offset_right = 40.0
 offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_tujwf")
 script = ExtResource("1_lmvgy")
 
 [node name="MageTower1" type="Sprite2D" parent="."]

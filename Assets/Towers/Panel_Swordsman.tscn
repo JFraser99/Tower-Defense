@@ -1,12 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://c1y5lvgtc24gy"]
+[gd_scene load_steps=4 format=3 uid="uid://c1y5lvgtc24gy"]
 
 [ext_resource type="Script" path="res://Assets/Towers/Panel_Swordsman.gd" id="1_a7ih0"]
 [ext_resource type="Texture2D" uid="uid://dglshmn2jheil" path="res://Assets/Towers/Swordsman_Tower_1.png" id="2_gamtk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_40llo"]
+bg_color = Color(1, 1, 1, 1)
 
 [node name="PanelSwordsman" type="Panel"]
 custom_minimum_size = Vector2(40, 50)
 offset_right = 40.0
 offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_40llo")
 script = ExtResource("1_a7ih0")
 
 [node name="SwordsmanTower1" type="Sprite2D" parent="."]
