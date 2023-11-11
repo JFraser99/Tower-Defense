@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cfg6jom36sku8"]
+[gd_scene load_steps=9 format=3 uid="uid://cfg6jom36sku8"]
 
 [ext_resource type="PackedScene" uid="uid://bfki2v3vhodgr" path="res://Assets/Towers/Panel_Mage.tscn" id="1_pgp5r"]
 [ext_resource type="Script" path="res://Assets/UIPanel.gd" id="1_xd66f"]
@@ -21,6 +21,14 @@ border_width_left = 2
 border_width_top = 2
 border_width_bottom = 2
 border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="GDScript" id="GDScript_o23d8"]
+script/source = "extends Label
+
+
+func _process(delta):
+	self.text = \"Health: \" + str(Game.Health)
+"
 
 [node name="UI" type="CanvasLayer"]
 
@@ -56,5 +64,12 @@ offset_top = 296.0
 offset_right = 12.0
 offset_bottom = 347.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_w7cxh")
+
+[node name="Health" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 30
+text = "Health: "
+script = SubResource("GDScript_o23d8")
 
 [connection signal="pressed" from="Panel/Button" to="Panel" method="_on_button_pressed"]
