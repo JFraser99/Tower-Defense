@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cfg6jom36sku8"]
+[gd_scene load_steps=12 format=3 uid="uid://cfg6jom36sku8"]
 
 [ext_resource type="PackedScene" uid="uid://bfki2v3vhodgr" path="res://Assets/Towers/Panel_Mage.tscn" id="1_pgp5r"]
 [ext_resource type="Script" path="res://Assets/UIPanel.gd" id="1_xd66f"]
@@ -9,18 +9,24 @@ bg_color = Color(0.00846373, 0.00532064, 0.000448392, 0.784314)
 border_width_left = 5
 border_color = Color(0, 0, 0, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_voeey"]
-bg_color = Color(1, 1, 1, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x2ilh"]
-bg_color = Color(1, 1, 1, 1)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w7cxh"]
 bg_color = Color(0.862745, 0.705882, 0.243137, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_bottom = 2
 border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_mom7m"]
+font_size = 40
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_voeey"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x2ilh"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_x080o"]
+font_size = 37
 
 [sub_resource type="GDScript" id="GDScript_o23d8"]
 script/source = "extends Label
@@ -56,24 +62,6 @@ offset_bottom = 640.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_sbmh1")
 script = ExtResource("1_xd66f")
 
-[node name="FlowContainer" type="FlowContainer" parent="Panel"]
-layout_mode = 0
-offset_left = 25.0
-offset_top = 16.0
-offset_right = 116.0
-offset_bottom = 317.0
-scale = Vector2(2, 2)
-theme_override_constants/h_separation = 10
-theme_override_constants/v_separation = 10
-
-[node name="PanelMage" parent="Panel/FlowContainer" instance=ExtResource("1_pgp5r")]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_voeey")
-
-[node name="PanelSwordsman" parent="Panel/FlowContainer" instance=ExtResource("2_difmf")]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_x2ilh")
-
 [node name="Button" type="Button" parent="Panel"]
 layout_mode = 0
 offset_left = -14.0
@@ -82,6 +70,58 @@ offset_right = 12.0
 offset_bottom = 347.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_w7cxh")
 text = ">"
+
+[node name="TowerUI" type="Node2D" parent="Panel"]
+visible = false
+
+[node name="TowerLabel" type="Label" parent="Panel/TowerUI"]
+offset_left = 16.0
+offset_top = 20.0
+offset_right = 216.0
+offset_bottom = 80.0
+text = "TOWERS"
+label_settings = SubResource("LabelSettings_mom7m")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FlowContainer" type="FlowContainer" parent="Panel/TowerUI"]
+offset_left = 25.0
+offset_top = 105.0
+offset_right = 116.0
+offset_bottom = 362.0
+scale = Vector2(2, 2)
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+
+[node name="PanelMage" parent="Panel/TowerUI/FlowContainer" instance=ExtResource("1_pgp5r")]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_voeey")
+
+[node name="PanelSwordsman" parent="Panel/TowerUI/FlowContainer" instance=ExtResource("2_difmf")]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_x2ilh")
+
+[node name="UpgradeUI" type="Node2D" parent="Panel"]
+
+[node name="UpgradeLabel" type="Label" parent="Panel/UpgradeUI"]
+offset_left = 16.0
+offset_top = 20.0
+offset_right = 216.0
+offset_bottom = 80.0
+text = "UPGRADES"
+label_settings = SubResource("LabelSettings_x080o")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DEBUG" type="Label" parent="Panel/UpgradeUI"]
+offset_left = 16.0
+offset_top = 211.0
+offset_right = 216.0
+offset_bottom = 271.0
+text = "DEBUG"
+label_settings = SubResource("LabelSettings_x080o")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Health" type="Label" parent="."]
 offset_right = 112.0

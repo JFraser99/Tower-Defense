@@ -7,6 +7,7 @@ var canAttack: bool = true
 var currTargets = []
 var pathName
 var placingTower = null
+var isSelected = false
 
 @onready var cooldownTimer: Timer = $AttackCooldownTimer
 @onready var detectionArea: Area2D = $DetectionArea
@@ -79,18 +80,19 @@ func _on_detection_area_body_exited(_body):
 	currTargets = detectionArea.get_overlapping_bodies()
 
 func _on_input_event(_viewport, event, _shape_idx):
-	if not placingTower:
-		if event is InputEventMouseButton and event.button_mask == 1:
-			var towerPath = get_tree().get_root().get_node("Main/Towers")
-			for i in towerPath.get_child_count():
-				if towerPath.get_child(i).name != self.name:
-					towerPath.get_child(i).get_node("Upgrade/Upgrade").hide()
-			var upgradeNode = get_node("Upgrade/Upgrade")
-			upgradeNode.visible = !upgradeNode.visible
-			upgradeNode.global_position = self.position + Vector2(-upgradeNode.size.x / 2, upgradeNode.size.y / 3)
+	if not placingTower and event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			if not isSelected:
+				var towerPath = get_tree().get_root().get_node("Main/Towers")
+				var selectedTower = null
+				for i in towerPath.get_child_count():
+					towerPath.get_child(i).isSelected = false
+					towerPath.get_child(i).get_node("Area").hide()
+			
+			toggle_selection()
 
 func _on_mouse_entered():
-	var placingTowerUINode = get_tree().get_root().get_node("Main/UI/Panel/FlowContainer")
+	var placingTowerUINode = get_tree().get_root().get_node("Main/UI/Panel/TowerUI/FlowContainer")
 	var nodeCount = placingTowerUINode.get_child_count()
 	for i in nodeCount:
 		if not placingTower:
@@ -112,3 +114,10 @@ func _on_mouse_exited():
 			placingTower = null
 		else:
 			placingTower.get_child(1).get_node("Area").modulate = Color(0,0,0,0.6)
+
+func toggle_selection():
+	isSelected = !isSelected
+	if isSelected:
+		$Area.show()
+	else:
+		$Area.hide()
