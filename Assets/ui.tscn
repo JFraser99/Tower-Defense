@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cfg6jom36sku8"]
+[gd_scene load_steps=10 format=3 uid="uid://cfg6jom36sku8"]
 
 [ext_resource type="PackedScene" uid="uid://bfki2v3vhodgr" path="res://Assets/Towers/Panel_Mage.tscn" id="1_pgp5r"]
 [ext_resource type="Script" path="res://Assets/UIPanel.gd" id="1_xd66f"]
@@ -28,6 +28,23 @@ script/source = "extends Label
 
 func _process(_delta):
 	self.text = \"Health: \" + str(Game.Health)
+"
+
+[sub_resource type="GDScript" id="GDScript_esjen"]
+resource_name = "WaveButton"
+script/source = "extends Button
+
+@onready var waveControllerNode = get_tree().get_root().get_node(\"Main/WaveController\")
+
+func _ready():
+	waveControllerNode.connect(\"wave_completed\", Callable(self, \"on_wave_completed\"))
+
+func _on_pressed():
+	self.disabled = true
+	waveControllerNode.start_next_wave()
+
+func on_wave_completed(wave_index):
+	self.disabled = false
 "
 
 [node name="UI" type="CanvasLayer"]
@@ -73,4 +90,13 @@ theme_override_font_sizes/font_size = 30
 text = "Health: "
 script = SubResource("GDScript_o23d8")
 
+[node name="WaveButton" type="Button" parent="."]
+offset_left = 8.0
+offset_top = 592.0
+offset_right = 113.0
+offset_bottom = 633.0
+text = "Next Wave"
+script = SubResource("GDScript_esjen")
+
 [connection signal="pressed" from="Panel/Button" to="Panel" method="_on_button_pressed"]
+[connection signal="pressed" from="WaveButton" to="WaveButton" method="_on_pressed"]

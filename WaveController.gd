@@ -15,11 +15,11 @@ func _ready():
 	add_child(waveTimer)
 	add_child(spawnTimer)
 	setup_waves()
-	start_next_wave()
+	#start_next_wave()
 	
 func setup_waves():
 	waves.append(WaveData.new(5, preload("res://Assets/Enemy/Enemy.tscn"), 1.0))
-	waves.append(WaveData.new(5, preload("res://Assets/Enemy/Enemy.tscn"), 0.6))
+	waves.append(WaveData.new(20, preload("res://Assets/Enemy/Enemy.tscn"), 0.3))
 	
 func start_next_wave():
 	if currentWaveIndex >= waves.size():
