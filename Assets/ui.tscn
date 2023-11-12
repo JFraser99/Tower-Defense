@@ -26,7 +26,7 @@ border_color = Color(0, 0, 0, 1)
 script/source = "extends Label
 
 
-func _process(delta):
+func _process(_delta):
 	self.text = \"Health: \" + str(Game.Health)
 "
 
@@ -64,10 +64,11 @@ offset_top = 296.0
 offset_right = 12.0
 offset_bottom = 347.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_w7cxh")
+text = ">"
 
 [node name="Health" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
+offset_right = 112.0
+offset_bottom = 45.0
 theme_override_font_sizes/font_size = 30
 text = "Health: "
 script = SubResource("GDScript_o23d8")

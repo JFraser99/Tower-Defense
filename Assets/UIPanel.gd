@@ -7,6 +7,8 @@ var offset = 10
 func _on_button_pressed():
 	if isMinimised:
 		global_position = Vector2(global_position.x - panelRect.size.x + offset, global_position.y)
+		$Button.text = ">"
 	else:
 		global_position = Vector2(global_position.x + panelRect.size.x - offset, global_position.y)
+		$Button.text = "<"
 	isMinimised = !isMinimised

@@ -1,6 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://c3t1ehcnkfms"]
-
-[ext_resource type="PackedScene" uid="uid://ltepa2i4galk" path="res://Assets/Enemy/Enemy.tscn" id="1_ujoox"]
+[gd_scene load_steps=2 format=3 uid="uid://c3t1ehcnkfms"]
 
 [sub_resource type="Curve2D" id="Curve2D_ivisv"]
 _data = {
@@ -14,5 +12,3 @@ curve = SubResource("Curve2D_ivisv")
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
 position = Vector2(-1, 287)
 loop = false
-
-[node name="Enemy" parent="PathFollow2D" instance=ExtResource("1_ujoox")]
