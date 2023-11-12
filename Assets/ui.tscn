@@ -43,7 +43,7 @@ func _on_pressed():
 	self.disabled = true
 	waveControllerNode.start_next_wave()
 
-func on_wave_completed(wave_index):
+func on_wave_completed(_wave_index):
 	self.disabled = false
 "
 

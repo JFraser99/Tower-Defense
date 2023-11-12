@@ -2,7 +2,7 @@ extends Node
 
 var WaveData = preload("res://WaveData.gd")
 
-var currentWaveIndex : int = 0
+var currentWaveIndex : int = -1
 var waveTimer : Timer = Timer.new()
 var spawnTimer : Timer = Timer.new()
 var waves : Array = []
@@ -14,6 +14,10 @@ signal wave_completed(wave_index)
 func _ready():
 	add_child(waveTimer)
 	add_child(spawnTimer)
+	spawnTimer.connect("timeout", Callable(self, "spawn_enemy"))
+	waveTimer.connect("timeout", Callable(self, "on_wave_timer_timeout"))
+	spawnTimer.autostart = false
+	waveTimer.autostart = false
 	setup_waves()
 	#start_next_wave()
 	
@@ -22,17 +26,16 @@ func setup_waves():
 	waves.append(WaveData.new(20, preload("res://Assets/Enemy/Enemy.tscn"), 0.3))
 	
 func start_next_wave():
+	currentWaveIndex += 1
 	if currentWaveIndex >= waves.size():
 		print("All Waves Completed")
 		return
 	
 	var wave = waves[currentWaveIndex]
 	spawnTimer.wait_time = wave.spawnInterval
-	spawnTimer.connect("timeout", Callable(self, "spawn_enemy"))
 	spawnTimer.one_shot = true
 	spawnTimer.start()
 	waveTimer.wait_time = wave.spawnInterval * wave.enemyCount
-	waveTimer.connect("timeout", Callable(self, "on_wave_timer_timeout"))
 	waveTimer.one_shot = true
 	waveTimer.start()
 	
@@ -52,7 +55,7 @@ func spawn_enemy():
 			
 func on_wave_timer_timeout():
 	emit_signal("wave_completed", currentWaveIndex)
-	currentWaveIndex += 1
+	#currentWaveIndex += 1
 	#start_next_wave()
 
 #@onready var path = preload("res://stage_1.tscn")
